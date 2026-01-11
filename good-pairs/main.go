@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	nums := []int{1, 2, 3, 1, 1, 3}
 	numIdenticalPairs(nums)
@@ -21,12 +23,17 @@ func numIdenticalPairs(nums []int) int {
 		Time O(n2)
 		Space O(1)
 	*/
+	// 1, 2, 3, 1, 1, 3
 	freq := make(map[int]int)
 	pairs := 0
 
 	for _, num := range nums {
+		fmt.Printf("num=%d | freq[num] antes=%d | pairs antes=%d\n", num, freq[num], pairs)
+
 		pairs += freq[num]
 		freq[num]++
+
+		fmt.Printf("       freq[num] depois=%d | pairs depois=%d | freq=%v\n\n", freq[num], pairs, freq)
 	}
 	return pairs
 	// Time O(n)

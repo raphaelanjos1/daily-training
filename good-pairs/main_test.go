@@ -3,16 +3,36 @@ package main
 import "testing"
 
 func TestGoodPairs(t *testing.T) {
-	result1 := numIdenticalPairs([]int{1, 2, 3, 1, 1, 3})
-	result2 := numIdenticalPairs([]int{1, 1, 1, 1})
-	result3 := numIdenticalPairs([]int{1, 2, 3})
+	tests := []struct {
+		name string
+		nums []int
+		want int
+	}{
+		{
+			name: "example1",
+			nums: []int{1, 2, 3, 1, 1, 3},
+			want: 4,
+		},
+		{
+			name: "example1",
+			nums: []int{1, 1, 1, 1},
+			want: 6,
+		},
+		{
+			name: "example1",
+			nums: []int{1, 2, 3},
+			want: 0,
+		},
+	}
 
-	expect1 := 4
-	expect2 := 6
-	expect3 := 0
-
-	if (result1 != expect1) || (result2 != expect2) || (result3 != expect3) {
-		t.Errorf("Error")
+	for _, tt := range tests {
+		tt := tt
+		t.Run(tt.name, func(t *testing.T) {
+			got := numIdenticalPairs(tt.nums)
+			if got != tt.want {
+				t.Fatalf("numIdenticalPairs(%v) = %d; want %d", tt.nums, got, tt.want)
+			}
+		})
 	}
 
 }
